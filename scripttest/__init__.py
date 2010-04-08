@@ -82,10 +82,7 @@ class TestFileEnvironment(object):
             environ = os.environ.copy()
         self.environ = environ
         if script_path is None:
-            if sys.platform == 'win32':
-                script_path = environ.get('PATH', '').split(';')
-            else:       
-                script_path = environ.get('PATH', '').split(':')
+            script_path = environ.get('PATH', '').split(os.path.pathsep)
         self.script_path = script_path
         if cwd is None:
             cwd = base_path
